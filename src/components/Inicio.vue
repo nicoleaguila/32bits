@@ -1,7 +1,7 @@
 <template>
     <div>
     <h1 v-text="title"></h1>
-    <h2 v-text= "subtitle"></h2>
+    <h2 v-text="subtitle"></h2>
     </div>
 </template>
 
