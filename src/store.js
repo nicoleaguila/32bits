@@ -7,6 +7,7 @@ const store = new Vuex.Store({
   state: {
     title: "32bits",
     subtitle: "Juegos de PC y consolas",
+    total: "total de juegos:",
     games: [
       {code: '0001', name: 'Sekiro', stock: 100, price: 30000, color: 'red', sale: true},
       {code: '0002', name: 'Fifa 21', stock: 100, price: 25000, color: 'blue', sale: false},

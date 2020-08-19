@@ -1,8 +1,11 @@
 <template>
 <div>
+    <p>Juegos disponibles {{ games.length }}</p>
     <b><p>Busca tu juego</p></b>
-    <input type="text" placeholder="Busca tu juego" v-model= "search"/>
+    <input type="text" placeholder="Escribe un codigo" v-model= "search"/>
   <GameList :games="filterGames"/>
+   <b><p v-text="total"></p></b>
+
 </div>
 </template>
 
@@ -19,9 +22,9 @@ export default {
         GameList
     },
 computed: {
-    ...mapState (["games"]),
+    ...mapState (["games", "total"]),
     ...mapGetters (["findGame"]),
-
+    
     filterGames () {
         if (this.search){
           return this.findGame(this.search)

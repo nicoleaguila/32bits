@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const Inicio = () => import('./components/Inicio')
+const Home = () => import('./components/Home')
 const Search = () => import('./components/Search')
 
 Vue.use(Router)
@@ -11,7 +11,7 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: Inicio
+            component: Home
         },
         {
             path: '/busqueda',
