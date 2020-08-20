@@ -2,7 +2,8 @@
 <div>
     <h1>Game's list</h1>
   <ul>
-      <li v-for="(game, index) in games" :key= "index" :style='{"background-color":game.color}'> {{ game.code }} - {{ game.name }} - {{ game.stock }} - {{ game.price }}</li>
+      <li v-for="(game, index) in games" :key= "index" :style='{"background-color":game.color}'> {{ game.code }} - {{ game.name }} - {{ game.stock }} - {{ game.price }}
+       <button v-if="displayButton" @click="emitSale(game)">vender</button> </li>
   </ul>
   </div>
 </template>
@@ -12,7 +13,16 @@ export default {
 props: {
     games: {
         type: Array,
-        required: true
+        required: true,
+        },
+     displayButton: {
+            type: Boolean,
+            default: false
+        }
+},
+methods: {
+    emitSale(game){
+        this.$emit('emit-sale', game)
     }
 }
 }

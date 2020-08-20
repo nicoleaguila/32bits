@@ -7,7 +7,7 @@ const store = new Vuex.Store({
   state: {
     title: "32bits",
     subtitle: "Juegos de PC y consolas",
-    total: "total de juegos:",
+    sales: [],
     games: [
       {code: '0001', name: 'Sekiro', stock: 100, price: 30000, color: 'red', sale: true},
       {code: '0002', name: 'Fifa 21', stock: 100, price: 25000, color: 'blue', sale: false},
@@ -23,10 +23,36 @@ const store = new Vuex.Store({
       return prod.code == code
     })
   },
+  availableGames(state) {
+    return state.games.filter((game) => {
+    return game.stock > 0 
+    })
+  }
     },
  
-  mutations: {},
-  actions: {}
-});
-
+  mutations: {
+    DEDUCT_STOCK (state, game){
+      let selectedGame= state.games.find((xgame) => {
+        return xgame.code == game.code
+      })
+      selectedGame.stock--
+    },
+    ADD_SALES (state, game){
+       state.sales.push(game)
+    }
+  },
+  actions: {
+    processSale({ commit }, game) {
+      if (game.stock > 0) {
+        setTimeout(() => {
+          commit ("DEDUCT_STOCK", game) 
+        setTimeout (() =>{
+          commit("ADD_SALES", {code: game.code, name: game.name, price: game.price})
+          alert("venta confirmada")
+        }, 1500);
+      }, 2000);
+    }
+  }
+}
+})
 export default store;
